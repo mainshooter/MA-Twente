@@ -1,7 +1,7 @@
 <?php
 
-require_once('databasehandler.class.php');
-require_once('view.class.php');
+require_once('classes/databasehandler.class.php');
+require_once('classes/view.class.php');
 
 if(ISSET($_REQUEST['submit'])) {
   $crud = new DbHandler('localhost' , 'ma-twente' ,'root' , 'Lente_2017');
