@@ -1,10 +1,18 @@
 <?php
 
+session_start();
+
 // require_once('classes/databasehandler.class.php');
 // require_once('classes/view.class.php');
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/MA-Twente/classes/databasehandler.class.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/MA-Twente/classes/view.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/MA-Twente/classes/security.class.php';
+
+$security = new security();
+$security = $security->checkLoginToken();
+
+if ($security == true) {
 
 if(ISSET($_REQUEST['gebruiker'])) {
   $crud = new DbHandler('localhost' , 'ma-twente' ,'root' , 'Lente_2017');
@@ -54,42 +62,7 @@ if(ISSET($_REQUEST['gebruiker'])) {
     break;
 
   }
+ }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
  ?>
