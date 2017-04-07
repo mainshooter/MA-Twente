@@ -1,4 +1,4 @@
-function loadItem() {
+function loadItem(fileLocation) {
   // Ajax GET REQUEST
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
