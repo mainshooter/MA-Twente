@@ -16,6 +16,9 @@
         if ($validateToken == true) {
           return(true);
         }
+        else if ($validateToken == false) {
+          return(false);
+        }
       }
     }
 

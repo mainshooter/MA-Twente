@@ -64,5 +64,8 @@ if(ISSET($_REQUEST['gebruiker'])) {
   }
  }
 }
+else if ($security == false) {
+  echo "string";
+}
 
  ?>
