@@ -10,7 +10,7 @@ class DbHandler {
   var $conn;
 
 
-  public function ___construct($host, $database, $username, $password) {
+  public function __construct($host, $database, $username, $password) {
     $this->host = $host;
     $this->username = $username;
     $this->passworde = $password;
