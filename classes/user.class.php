@@ -1,15 +1,12 @@
 <?php
+  require_once 'databasehandler.class.php';
+  require 'view.class.php';
 
   class user {
-    public var $email;
-    private var $password;
+    public $email = "";
+    private $password = "";
 
-    require_once 'view.class.php';
-    require_once 'databasehandler.class.php';
-
-    $db = new DbHandler();
-    $view = new view();
-
+    // require_once 'view.class.php';
     public function login($email, $password) {
       // Function that enable the login
       $this->email = $this->checkInput($email);
@@ -20,19 +17,23 @@
         $_SESSION['email'] = $this->email;
         $_SESSION['loginToken'] = "g159hun3ifHTW$#2424rfhsd";
         // Login token
+
+        return(true);
       }
       else {
         // Something isn't correct
-        $view->displayMessage("Not correct");
+        return(false);
       }
     }
     public function createNewUser($email, $password) {
+      $db = new DbHandler('localhost' , 'ma-twente' ,'root');
+
       $this->email = $this->checkInput($email);
       $this->password = $this->checkInput($password);
 
       $hashPassword = $this->createHashPassword();
 
-      $sql = "INSERT INTO gebruiker (email, wachtwoord) VALUES (" . $this->email . ", " . $hashPassword . ")";
+      $sql = "INSERT INTO gebruiker (mail, wachtwoord) VALUES (" . $this->email . ", " . $hashPassword . ")";
       $db->CreateData($sql);
     }
     private function createHashPassword() {
@@ -43,12 +44,16 @@
 
     private function verifyLogin() {
       // Verify the login
-      $sql = "SELECT wachtwoord FROM gebruiker WHERE email=" . $this->password . ""
+      $db = new DbHandler('localhost' , 'ma-twente' ,'root');
+
+      $sql = "SELECT wachtwoord FROM gebruiker WHERE mail='" . $this->email . "' LIMIT 1";
       $hashedPassword = $db->readData($sql);
 
-      $passwordVerify = password_verify($password, $hashedPassword);
+      foreach ($hashedPassword as $row) {
+        $passwordVerify = password_verify($this->password, $row['wachtwoord']);
+      }
 
-      if ($passwordVerify) {
+      if ($passwordVerify == true) {
         // Password is correct and the user exists!
         return(true);
       }
