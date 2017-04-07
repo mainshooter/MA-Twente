@@ -36,7 +36,6 @@ class DbHandler {
     catch(PDOException $e) {
       return "Error: " . $sql . "<br>" . $e->getMessage();
     }
-
   }
 
   function ReadData($sql) {
