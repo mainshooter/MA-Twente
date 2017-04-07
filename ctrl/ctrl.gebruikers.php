@@ -15,7 +15,7 @@ $security = $security->checkLoginToken();
 if ($security == true) {
 
 if(ISSET($_REQUEST['gebruiker'])) {
-  $crud = new DbHandler('localhost' , 'ma-twente' ,'root' , 'Lente_2017');
+  $crud = new DbHandler();
 
   switch ($_REQUEST['gebruiker']) {
 
