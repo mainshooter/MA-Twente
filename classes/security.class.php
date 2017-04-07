@@ -22,11 +22,13 @@
     private function validateLoginToken($currentUserToken) {
       // Check if the token is correct
       $loginToken = $this->getLoginToken();
-      if ($currentUserToken == $loginToken) {
-        return(true);
-      }
-      else {
-        return(false);
+      if (ISSET($loginToken)) {
+        if ($currentUserToken == $loginToken) {
+          return(true);
+        }
+        else {
+          return(false);
+        }  
       }
     }
     // Using the token validation to check if someone is logged in
