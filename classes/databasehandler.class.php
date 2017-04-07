@@ -4,14 +4,13 @@ class DbHandler {
 
   private $host;
   private $username;
-  private $password = "1234";
+  private $password;
   private $database;
 
   var $conn;
 
 
-
-  function __construct($host, $database, $username) {
+  function __construct($host, $database, $username, $password) {
     $this->host = $host;
     $this->username = $username;
     $this->password = $password;

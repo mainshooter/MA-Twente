@@ -1,12 +1,15 @@
 <?php
 
-require_once('classes/databasehandler.class.php');
-require_once('classes/view.class.php');
+// require_once('classes/databasehandler.class.php');
+// require_once('classes/view.class.php');
 
-if(ISSET($_REQUEST['submit'])) {
+require_once $_SERVER['DOCUMENT_ROOT'] . '/MA-Twente/classes/databasehandler.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/MA-Twente/classes/view.class.php';
+
+if(ISSET($_REQUEST['gebruiker'])) {
   $crud = new DbHandler('localhost' , 'ma-twente' ,'root' , 'Lente_2017');
 
-  switch ($_REQUEST['submit']) {
+  switch ($_REQUEST['gebruiker']) {
 
     case 'read':
     $sql = "SELECT * FROM gebruiker";
