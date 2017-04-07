@@ -42,7 +42,7 @@
     $login = $user->login($email, $password);
 
     if ($login == true) {
-      header('Location: dashboard.php');
+      header('Location: dashboard.html');
 
     }
     else if ($login == false) {
