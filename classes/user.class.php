@@ -37,7 +37,7 @@
 
       $hashPassword = $this->createHashPassword();
 
-      $sql = "INSERT INTO gebruiker (mail, wachtwoord) VALUES (" . $this->email . ", " . $hashPassword . ")";
+      // $sql = "INSERT INTO gebruiker (mail, wachtwoord) VALUES (" . $this->email . ", " . $hashPassword . ")";
       $db->CreateData($sql);
     }
     private function createHashPassword() {
