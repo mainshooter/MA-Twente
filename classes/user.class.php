@@ -1,6 +1,7 @@
 <?php
   require_once 'databasehandler.class.php';
-  require 'view.class.php';
+  require_once 'view.class.php';
+  require_once 'security.class.php';
 
   class user {
     public $email = "";
@@ -9,13 +10,16 @@
     // require_once 'view.class.php';
     public function login($email, $password) {
       // Function that enable the login
+
+      $security = new security();
+
       $this->email = $this->checkInput($email);
       $this->password = $this->checkInput($password);
       $login = $this->verifyLogin();
       if ($login) {
         // Everything is correct
         $_SESSION['email'] = $this->email;
-        $_SESSION['loginToken'] = "g159hun3ifHTW$#2424rfhsd";
+        $_SESSION['loginToken'] = $security->getLoginToken();
         // Login token
 
         return(true);
