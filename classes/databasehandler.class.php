@@ -10,6 +10,7 @@ class DbHandler {
   var $conn;
 
 
+
   public function __construct($host, $database, $username, $password) {
     $this->host = $host;
     $this->username = $username;
@@ -36,7 +37,6 @@ class DbHandler {
     catch(PDOException $e) {
       return "Error: " . $sql . "<br>" . $e->getMessage();
     }
-
   }
 
   function ReadData($sql) {
