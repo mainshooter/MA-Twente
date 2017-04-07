@@ -30,8 +30,8 @@
   <?php
   session_start();
   if (ISSET($_POST['user'])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/leerjaar2/MA-Twente/classes/user.class.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/leerjaar2/MA-Twente/classes/view.class.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/MA-Twente/classes/user.class.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/MA-Twente/classes/view.class.php';
 
     $user = new user();
     $view = new view();

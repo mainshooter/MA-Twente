@@ -30,7 +30,7 @@
       }
     }
     public function createNewUser($email, $password) {
-      $db = new DbHandler('localhost' , 'ma-twente' ,'root');
+      $db = new DbHandler('localhost' , 'ma-twente' ,'root', '1234');
 
       $this->email = $this->checkInput($email);
       $this->password = $this->checkInput($password);
@@ -48,7 +48,7 @@
 
     private function verifyLogin() {
       // Verify the login
-      $db = new DbHandler('localhost' , 'ma-twente' ,'root');
+      $db = new DbHandler('localhost' , 'ma-twente' ,'root', '1234');
 
       $sql = "SELECT wachtwoord FROM gebruiker WHERE mail='" . $this->email . "' LIMIT 1";
       $hashedPassword = $db->readData($sql);
