@@ -41,20 +41,20 @@ if(ISSET($_REQUEST['gebruiker'])) {
     break;
 
     case 'update':
-    $idgebruiker = $_POST['id'];
+    $idgebruiker = $_POST['idgebruiker'];
     $voorletter = $_POST['voorletter'];
     $achternaam = $_POST['achternaam'];
     $geslacht = $_POST['geslacht'];
     $afdeling = $_POST['afdeling'];
     $telefoonnummer = $_POST['telefoonnummer'];
-    $sql = "UPDATE gebruiker SET voorletter = $voorletter, achternaam = $achternaam, geslacht = $geslacht, afdeling = $afdeling, telefoonnummer = $telefoonnummer WHERE id = $idgebruiker";
+    $sql = "UPDATE gebruiker SET voorletter = $voorletter, achternaam = $achternaam, geslacht = $geslacht, afdeling = $afdeling, telefoonnummer = $telefoonnummer WHERE idgebruiker = $idgebruiker";
     $melding = $crud->UpdateData($sql);
     $view = new view();
     $view->updateAlert($melding);
     break;
 
     case 'delete':
-    $idgebruiker = $_POST['id'];
+    $idgebruiker = $_POST['idgebruiker'];
     $sql = "DELETE FROM gebruiker WHERE id = $idgebruiker";
     $melding = $crud->DeleteData($sql);
     $view = new view();
