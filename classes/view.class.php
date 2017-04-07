@@ -11,20 +11,29 @@
     foreach ($header as $row) {
       echo "<tr>";
       foreach ($row as $key =>$val) {
+        if($key == "idgebruiker") {
+
+        } else {
         echo "<th>" . $key . "</th>";
+      }
       }
     }
     foreach($res as $row) {
       echo '<input type="hidden" name="id" value="'.$row['idgebruiker'].'">';
       echo '<tr><form method="POST" action="ctrl.database.php">';
       foreach ($row as $key => $val) {
-      echo  "<td>" .$val ."</td>";
+        if($key == "idgebruiker") {
+
+        } else {
+            echo  "<td>" .$val ."</td>";
+        }
+
       }
-      echo '<td><button type="submit" value="update" name="submit">Update</button></td>';
-      echo '<td><button type="submit" value="delete" name="submit">Delete</button></td>';
+      echo '<td><button type="submit" value="update" name="gebruiker">Update</button></td>';
+      echo '<td><button type="submit" value="delete" name="gebruiker">Delete</button></td>';
     }
     echo "</table>";
-    echo  "<button style='background-color:white;color:black;' class='col-1' type='submit' value='send' name='send'><a href='index.php'>Gebruiker toevoegen</a></button><br><br><br><br>";
+    echo  "<button style='background-color:white;color:black;' class='col-1' type='submit' value='send' name='send'><a href='dashboard.html'>Gebruiker toevoegen</a></button><br><br><br><br>";
   }
 
    public function alertSucces($melding) {
