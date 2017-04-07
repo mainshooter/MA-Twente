@@ -21,6 +21,9 @@
         }
       }
     }
+    public function deleteLoginToken() {
+      $_SESSION['loginToken'] == "";
+    }
 
     private function validateLoginToken($currentUserToken) {
       // Check if the token is correct

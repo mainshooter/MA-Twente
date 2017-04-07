@@ -29,6 +29,10 @@
         return(false);
       }
     }
+    public function logout() {
+      $security = new security();
+      $security->deleteLoginToken();
+    }
     public function createNewUser($email, $password) {
       $db = new DbHandler();
 
