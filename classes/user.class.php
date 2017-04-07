@@ -37,7 +37,7 @@
 
       $hashPassword = $this->createHashPassword();
 
-      // $sql = "INSERT INTO gebruiker (mail, wachtwoord) VALUES (" . $this->email . ", " . $hashPassword . ")";
+      $sql = "INSERT INTO gebruiker (mail, wachtwoord) VALUES (" . $this->email . ", " . $hashPassword . ")";
       $db->CreateData($sql);
     }
     private function createHashPassword() {
@@ -52,17 +52,25 @@
 
       $sql = "SELECT wachtwoord FROM gebruiker WHERE mail='" . $this->email . "' LIMIT 1";
       $hashedPassword = $db->readData($sql);
+      $rowCount = $db->countRow($sql);
 
-      foreach ($hashedPassword as $row) {
-        $passwordVerify = password_verify($this->password, $row['wachtwoord']);
-      }
+      if ($rowCount != 0) {
+        // Is we have a result
+        foreach ($hashedPassword as $row) {
+          $passwordVerify = password_verify($this->password, $row['wachtwoord']);
+        }
 
-      if ($passwordVerify == true) {
-        // Password is correct and the user exists!
-        return(true);
+        if ($passwordVerify == true) {
+          // Password is correct and the user exists!
+          return(true);
+        }
+        else {
+          // User doesn't exists or thw wrong password is used
+          return(false);
+        }
       }
       else {
-        // User doesn't exists or thw wrong password is used
+        // No username found
         return(false);
       }
     }
