@@ -22,7 +22,21 @@
           $view->displayMessage("Not correct");
         }
         break;
+        case 'forgot':
 
+          $userExists = $user->checkEmailExists($_REQUEST['email']);
+
+          if ($userExists == true) {
+            $user->updatePassword($_REQUEST['email'], "1234");
+            $view->displayMessage("Wachtwoord is aangepast");
+          }
+          else {
+            $view->displayMessage("Something went wrong");
+          }
+          break;
+        case 'addUser':
+          # code...
+          break;
         case 'logout':
           $user->logout();
           header('Location: /MA-Twente/index.php');
