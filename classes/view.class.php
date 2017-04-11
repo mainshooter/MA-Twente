@@ -5,17 +5,29 @@
     public function displayMessage($message) {
       echo $message;
     }
+    public function wachtwoordVergetenForm() {
+      echo "
+        <form>
+          <div>Uw email</div>
+          <input type='email' id='email'>
+          <div></div>
+          <br />
+          <button type='button' onclick='passwordForgotRequest(email);'>Wachtwoord reset!</button>
+        </form>
+      ";
+    }
     public function displayTable($header, $res) {
 
       echo "<table class='col-12'>";
     foreach ($header as $row) {
       echo "<tr>";
       foreach ($row as $key =>$val) {
-        if($key == "idgebruiker") {
+        if ($key == 'idgebruiker') {
 
-        } else {
-        echo "<th>" . $key . "</th>";
-      }
+        }
+        else {
+          echo "<th>" . $key . "</th>";
+        }
       }
     }
     foreach($res as $row) {
@@ -24,16 +36,27 @@
       foreach ($row as $key => $val) {
         if($key == "idgebruiker") {
 
-        } else {
+        }
+        else if ($key == 'wachtwoord') {
+
+        }
+        else {
             echo  "<td>" .$val ."</td>";
         }
 
       }
-      echo '<td><button type="submit" value="update" name="gebruiker">Update</button></td>';
+      echo '<td><button type="submit" value="update" name="gebruiker" onclick=loadItem("ctrl/ctrl.user.php?user=readUser&userID=' . $row['idgebruiker'] .'");>Update</button></td>';
       echo '<td><button type="submit" value="delete" name="gebruiker">Delete</button></td>';
     }
     echo "</table>";
-    echo  "<button style='background-color:white;color:black;' class='col-1' type='submit' value='send' name='send'><a href='dashboard.html'>Gebruiker toevoegen</a></button><br><br><br><br>";
+    echo  "<button style='background-color:white;color:black;' class='col-1' type='button' onclick='ctrl/ctrl.user.php'>Gebruiker toevoegen</button><br><br><br><br>";
+  }
+  public function createUserForm() {
+    echo "
+      <form>
+        <input type='text' id=''>
+      </form>
+    ";
   }
 
    public function alertSucces($melding) {
@@ -44,13 +67,34 @@
      echo "succes" . $melding;
    }
 
-   public function updateFormulier($row) {
-     echo '<table>';
-     foreach($res as $row) {
-       foreach($row as $key => $val) {
-         echo '<tr><td><input type="text" name="' .$key.'" value="' .$val.'"<br></td></tr>';
+   public function updateFormulier($header,$res) {
+     echo "<table>";
+     foreach ($header as $row) {
+       echo "<tr>";
+       foreach ($row as $key =>$val) {
+         if ($key == 'idgebruiker') {
+
+         }
+         else {
+           echo "<th>" . $key . "</th>";
+         }
        }
      }
+     echo "</tr>";
+     foreach($res as $row) {
+       echo "<tr>";
+       foreach($row as $key => $val) {
+         if ($key == 'mail') {
+           echo '<td>' .$val .' </td>';
+         }
+         else {
+           echo '<td><input id=' . $key . ' type="text" name="' .$key.'" value="' .$val.'"></td>';
+         }
+       }
+       echo "</tr>";
+     }
+     echo "<div></div>";
+     echo "<button type='button' onclick='updateUser(\"" . $row['mail'] . "\");'>Update!</button>";
      echo '</table>';
    }
 

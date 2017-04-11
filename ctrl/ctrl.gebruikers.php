@@ -22,9 +22,9 @@ if(ISSET($_REQUEST['gebruiker'])) {
   switch ($_REQUEST['gebruiker']) {
 
     case 'read':
-    $sql = "SELECT `mail`, `voorletter`, `achternaam`, `geslacht`, `telefoonnummer_idtelefoonnummer`, `afdeling_idafdeling` FROM gebruiker";
+    $sql = "SELECT idgebruiker,`mail`, `voorletter`, `achternaam`, `geslacht`, `telefoonnummer_idtelefoonnummer`, `afdeling_idafdeling` FROM gebruiker";
     $header = $crud->ReadData($sql);
-    $sql = "SELECT `mail`, `voorletter`, `achternaam`, `geslacht`, `telefoonnummer_idtelefoonnummer`, `afdeling_idafdeling` FROM gebruiker";
+    $sql = "SELECT idgebruiker,`mail`, `voorletter`, `achternaam`, `geslacht`, `telefoonnummer_idtelefoonnummer`, `afdeling_idafdeling` FROM gebruiker";
     $res = $crud->ReadData($sql);
     $view->displayTable($header, $res);
     break;
@@ -58,7 +58,6 @@ if(ISSET($_REQUEST['gebruiker'])) {
     $melding = $crud->DeleteData($sql);
     $view->deleteAlert($melding);
     break;
-
   }
  }
 }
