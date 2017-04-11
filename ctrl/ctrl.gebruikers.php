@@ -11,11 +11,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/MA-Twente/classes/security.class.php'
 
 $security = new security();
 $security = $security->checkLoginToken();
+$view = new view();
 
 if ($security == true) {
 
 if(ISSET($_REQUEST['gebruiker'])) {
   $crud = new DbHandler();
+
 
   switch ($_REQUEST['gebruiker']) {
 
@@ -24,7 +26,6 @@ if(ISSET($_REQUEST['gebruiker'])) {
     $header = $crud->ReadData($sql);
     $sql = "SELECT * FROM gebruiker";
     $res = $crud->ReadData($sql);
-    $view = new view();
     $view->displayTable($header, $res);
     break;
 
@@ -36,7 +37,6 @@ if(ISSET($_REQUEST['gebruiker'])) {
     $telefoonnummer = $_POST['telefoonnummer'];
     $sql = "INSERT INTO gebruiker (voorletter, achternaam, geslacht, afdeling, telefoonnummer) VALUES ('$voorletter' , '$achternaam' , '$geslacht' , '$afdeling' , ' $telefoonnummer')";
     $melding = $crud->CreateData($sql);
-    $view = new view();
     $view->alertSucces($melding);
     break;
 
@@ -49,7 +49,6 @@ if(ISSET($_REQUEST['gebruiker'])) {
     $telefoonnummer = $_POST['telefoonnummer'];
     $sql = "UPDATE gebruiker SET voorletter = $voorletter, achternaam = $achternaam, geslacht = $geslacht, afdeling = $afdeling, telefoonnummer = $telefoonnummer WHERE idgebruiker = $idgebruiker";
     $melding = $crud->UpdateData($sql);
-    $view = new view();
     $view->updateAlert($melding);
     break;
 
@@ -57,7 +56,6 @@ if(ISSET($_REQUEST['gebruiker'])) {
     $idgebruiker = $_POST['idgebruiker'];
     $sql = "DELETE FROM gebruiker WHERE id = $idgebruiker";
     $melding = $crud->DeleteData($sql);
-    $view = new view();
     $view->deleteAlert($melding);
     break;
 
@@ -65,7 +63,7 @@ if(ISSET($_REQUEST['gebruiker'])) {
  }
 }
 else if ($security == false) {
-  echo "string";
+  $view->noLogin();
 }
 
  ?>

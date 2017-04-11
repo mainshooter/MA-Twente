@@ -22,7 +22,7 @@
       }
     }
     public function deleteLoginToken() {
-      $_SESSION['loginToken'] == "";
+      unset($_SESSION['loginToken']);
     }
 
     private function validateLoginToken($currentUserToken) {

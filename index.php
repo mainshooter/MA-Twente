@@ -24,6 +24,7 @@
           <div></div>
           <input type="submit" name="user" value="login">
         </form>
+        <a href="wachtwoordvergeten.php">
       </div>
       <div class="col-3"></div>
   </div>

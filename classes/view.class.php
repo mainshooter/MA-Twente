@@ -57,6 +57,11 @@
    public function updateAlert($melding) {
      echo "succes" . $melding;
    }
+   public function noLogin() {
+     echo "
+      <h2>U bent niet ingelogd klik <a href='index.php'>hier</a> om in te loggen</h2>
+     ";
+   }
 
 
 

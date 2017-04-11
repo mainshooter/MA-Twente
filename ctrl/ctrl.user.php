@@ -1,5 +1,5 @@
 <?php
-
+  session_start();
   if (ISSET($_REQUEST['user'])) {
 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/MA-Twente/classes/user.class.php';
@@ -27,10 +27,6 @@
           $user->logout();
           header('Location: /MA-Twente/index.php');
           break;
-
-      default:
-        # code...
-        break;
     }
   }
 

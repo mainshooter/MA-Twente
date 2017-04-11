@@ -32,6 +32,8 @@
     public function logout() {
       $security = new security();
       $security->deleteLoginToken();
+      $_SESSION['loginToken'] = "";
+      echo "logout";
     }
     public function createNewUser($email, $password) {
       $db = new DbHandler();
