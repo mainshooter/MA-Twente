@@ -32,8 +32,17 @@
     public function logout() {
       $security = new security();
       $security->deleteLoginToken();
-      $_SESSION['loginToken'] = "";
-      echo "logout";
+    }
+    public function updatePassword($mail, $password) {
+      $db = new DbHandler();
+
+      $mail = $this->checkInput($mail);
+      $passwordHash = $this->createHashPassword($this->checkInput($password));
+
+      $sql = "UPDATE gebruiker SET wachtwoord='" . $passwordHash ."' WHERE mail='" . $mail ."'";
+      $result = $db->UpdateData($sql);
+
+      return($result);
     }
     public function createNewUser($email, $password) {
       $db = new DbHandler();
@@ -41,15 +50,30 @@
       $this->email = $this->checkInput($email);
       $this->password = $this->checkInput($password);
 
-      $hashPassword = $this->createHashPassword();
+      $hashPassword = $this->createHashPassword($password);
 
       $sql = "INSERT INTO gebruiker (mail, wachtwoord) VALUES (" . $this->email . ", " . $hashPassword . ")";
       $db->CreateData($sql);
     }
-    private function createHashPassword() {
+    private function createHashPassword($password) {
       // Hash a password
-      $hash = password_hash($this->password, PASSWORD_DEFAULT);
+      $hash = password_hash($this->checkInput($password), PASSWORD_DEFAULT);
       return($hash);
+    }
+    public function checkEmailExists($mail) {
+      // Check if mail exists
+      $db = new DbHandler();
+      $mail = $this->checkInput($mail);
+
+      $sql = "SELECT mail FROM gebruiker WHERE mail='" . $mail . "'";
+      $rowCount = $db->countRow($sql);
+      
+      if ($rowCount == 1) {
+        return(true);
+      }
+      else {
+        return(false);
+      }
     }
 
     private function verifyLogin() {
